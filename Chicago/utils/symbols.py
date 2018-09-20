@@ -1,0 +1,4 @@
+EMPTY_DATA = -1
+BAD_WEATHER = -2
+
+NO_TEM = -271
