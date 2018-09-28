@@ -2,48 +2,41 @@ import os
 
 projectPath = os.path.dirname(os.path.abspath(__file__))
 
-csvDataPath = os.path.join(projectPath, 'csvData/')
+dataPath = os.path.join(os.path.join(os.path.dirname(projectPath), 'DataDir'), 'NYC')
 
-htmlPath = os.path.join(projectPath, 'html')
+csvDataPath = os.path.join(dataPath, 'csvData')
 
-jsonPath = os.path.join(projectPath, 'json')
+htmlPath = os.path.join(dataPath, 'html')
 
-demandDataPath = os.path.join(projectPath, 'demandData')
+jsonPath = os.path.join(dataPath, 'json')
 
-pngPath = os.path.join(projectPath, 'png')
+demandDataPath = os.path.join(dataPath, 'demandData')
 
-absorptionPngPath = os.path.join(pngPath, 'Absorption')
+pngPath = os.path.join(dataPath, 'png')
 
-stimulationPngPath = os.path.join(pngPath, 'Stimulation')
-
-absorptionObviousPngPath = os.path.join(absorptionPngPath, 'Obvious')
-
-absorptionReversePngPath = os.path.join(absorptionPngPath, 'Reverse')
-
-absorptionUnchangedPngPath = os.path.join(absorptionPngPath, 'Unchanged')
-
-stimulationObviousPngPath = os.path.join(stimulationPngPath, 'Obvious')
-
-stimulationReversePngPath = os.path.join(stimulationPngPath, 'Reverse')
-
-stimulationUnchangedPngPath = os.path.join(stimulationPngPath, 'Unchanged')
-
-rawBikeDataPath = os.path.join(projectPath, 'RawBikeData')
+rawBikeDataPath = os.path.join(dataPath, 'RawBikeData')
 
 predictionPngPath = os.path.join(pngPath, 'Prediction')
 
-demandMinDataPath = os.path.join(projectPath, 'demandMinData')
+demandMinDataPath = os.path.join(dataPath, 'demandMinData')
 
-tfModelDataPath = os.path.join(projectPath, 'tfModelDataPath')
+tfModelDataPath = os.path.join(dataPath, 'tfModelDataPath')
 
-txtPath = os.path.join(projectPath, 'TXT')
+txtPath = os.path.join(dataPath, 'TXT')
 
 in_demand_pre_pngPath = os.path.join(pngPath, 'in-demand-pre')
 
 clusterDemandPrePng = os.path.join(pngPath, 'clusterDemandPre')
 
-clusterFilePath = os.path.join(projectPath, 'clusterFilePath')
+clusterFilePath = os.path.join(dataPath, 'clusterFilePath')
 
-clusterDemandPreDataPath = os.path.join(projectPath, 'clusterDemandPreDataPath')
+clusterDemandPreDataPath = os.path.join(dataPath, 'clusterDemandPreDataPath')
 
-GraphDemandPreDataPath = os.path.join(projectPath, 'GraphDemandPreData')
+GraphDemandPreDataPath = os.path.join(dataPath, 'GraphDemandPreData')
+
+if __name__ == '__main__':
+    dirList = [projectPath, dataPath, csvDataPath, htmlPath, jsonPath, demandDataPath, pngPath, rawBikeDataPath, predictionPngPath,
+            demandMinDataPath, tfModelDataPath, txtPath, in_demand_pre_pngPath, clusterDemandPreDataPath, GraphDemandPreDataPath]
+    for dir in dirList:
+        if os.path.isdir(dir) == False:
+            os.mkdir(dir)

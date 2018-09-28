@@ -1,8 +1,11 @@
 from multiprocessing import Pool
 import os
 
-targetFolder = 'GraphFusionModel'
-targetScript = 'GraphFusionModelV14'
+# targetFolder = 'GraphFusionModel'
+# targetScript = 'GraphFusionModelV14'
+
+targetFolder = 'ARIMA'
+targetScript = 'ARIMA-V1'
 
 def slaveThread(fileNameString, argv):
     os.system('python -m ' + fileNameString + ' ' + argv)

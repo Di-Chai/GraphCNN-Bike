@@ -89,7 +89,7 @@ if __name__ == '__main__':
     # fig.savefig(os.path.join(paperPath, 'result3_%s.jpg' % top), dpi=120)
     # plt.close()
 
-    plotLength = 30
+    plotLength = 10
 
     arima = result4[:plotLength]
 

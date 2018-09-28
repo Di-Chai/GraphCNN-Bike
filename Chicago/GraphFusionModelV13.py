@@ -14,7 +14,7 @@ centralStationIDList = stationIDDict['centralStationIDList']
 allStationIDList = stationIDDict['allStationIDList']
 
 # (0) feature and target length
-featureLength = 9
+featureLength = 6
 targetLength = 1
 lossTestLength = 500
 pValueConfidenceValue = 0.1
