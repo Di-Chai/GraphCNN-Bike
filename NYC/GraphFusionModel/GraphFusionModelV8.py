@@ -1,4 +1,4 @@
-from dataAPI.utils import *
+from DataAPI.utils import *
 import tensorflow as tf
 from scipy import stats
 import sys

@@ -1,5 +1,5 @@
-from dataAPI.utils import *
-from sharedParametersV2 import *
+from DataAPI.utils import *
+from SharedParameters.SharedParameters import *
 import sys
 import pandas as pd
 from matplotlib import pyplot as plt

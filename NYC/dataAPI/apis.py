@@ -1,11 +1,11 @@
 # -*-  coding:utf-8 -*-
-from utils.dayType import *
+from Utils.dayType import *
 import random
 import statsmodels.api as sm
 import pandas as pd
 import matplotlib.pyplot as plt
 import math
-from dataAPI.utils import *
+from DataAPI.utils import *
 
 dailyDemandDict = getJsonData('dailyDemandDict.json')
 aggregateDemand = getJsonData('aggregateDemand.json')

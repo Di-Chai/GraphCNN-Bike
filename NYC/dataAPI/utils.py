@@ -1,15 +1,15 @@
 import os
 import json
 import numpy as np
-from utils.symbols import *
+from Utils.symbols import *
 from localPath import *
 from dateutil.parser import parse
 from functools import reduce
-from utils.distance import haversine
+from Utils.distance import haversine
 from multiprocessing import Pool
 import csv
 import datetime
-from utils.dayType import *
+from Utils.dayType import *
 import matplotlib.pyplot as plt
 
 dateTimeMode = '%Y-%m-%d'

@@ -1,6 +1,6 @@
-from dataAPI.utils import *
-from dataAPI.apis import d_diff
-from sharedParametersV2 import *
+from DataAPI.utils import *
+from DataAPI.apis import d_diff
+from SharedParameters.SharedParameters import *
 import sys
 import pandas as pd
 from matplotlib import pyplot as plt

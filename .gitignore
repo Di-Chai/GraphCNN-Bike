@@ -24,6 +24,4 @@
 */.idea
 _pycache__/
 build/
-db.sqlite3
-*/**/migrations/*
-/sunshineInsurance/settings.py
+DataDir/
