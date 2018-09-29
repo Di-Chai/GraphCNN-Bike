@@ -8,10 +8,11 @@ import types
 publicHolidayList = ['01-01', '01-02', '01-16', '02-12', '02-13', '02-20', '05-29', '07-04', '09-04',
                      '10-09', '11-10', '11-11', '11-23', '12-25']
 
-
-with open(os.path.join(jsonPath, 'weatherDictChicago.json'), 'r') as f:
-    weatherDict = json.load(f)
-
+try:
+    with open(os.path.join(jsonPath, 'weatherDict.json'), 'r') as f:
+        weatherDict = json.load(f)
+except:
+    weatherDict = {}
 
 def isBadDay(dateString):
     isBadDayDict = weatherDict['isBadDay']

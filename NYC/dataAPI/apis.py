@@ -7,11 +7,15 @@ import matplotlib.pyplot as plt
 import math
 from DataAPI.utils import *
 
-dailyDemandDict = getJsonData('dailyDemandDict.json')
-aggregateDemand = getJsonData('aggregateDemand.json')
-weatherDict = getJsonData('weatherDict.json')
-dockDataDict = getJsonData('dockDataDict.json')
-distanceMatrix = getJsonData('distanceMatrix.json')
+
+dailyDemandDict = safeLoad(getJsonData, 'dailyDemandDict.json')
+aggregateDemand = safeLoad(getJsonData, 'aggregateDemand.json')
+weatherDict = safeLoad(getJsonData, 'weatherDict.json')
+dockDataDict = safeLoad(getJsonData, 'dockDataDict.json')
+distanceMatrix = safeLoad(getJsonData, 'distanceMatrix.json')
+
+def getRawBikeDataFileList():
+    return sorted([e for e in os.listdir(rawBikeDataPath) if e.endswith('.csv')])
 
 def getNearStationList(stationID, distanceNear, distanceFar):
     resultList = []

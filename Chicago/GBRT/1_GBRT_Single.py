@@ -1,4 +1,4 @@
-from dataAPI.apis import *
+from dataAPI.utils import *
 import tensorflow as tf
 from scipy import stats
 import sys
@@ -41,7 +41,7 @@ for stationCounter in range(GraphValueMatrix.shape[2]):
     counter += 1
     print(counter)
 
-    seriesData = GraphValueMatrix[:, :, allStationIDList.index(centralStationIDList[stationCounter])].reshape([-1, 24])
+    seriesData = GraphValueMatrix[:, :, allStationIDList.index(centralStationIDList[stationCounter])].reshape([604, 24])
 
     trainData = seriesData[:-80]
     trainTem = tem[:-80]
@@ -62,10 +62,24 @@ for stationCounter in range(GraphValueMatrix.shape[2]):
 
     a = (testPredict - np.array(testTarget, dtype=np.float32))**2
 
-    RMSE = np.mean((testPredict[:RMSECalTime*(24-6)] - np.array(testTarget[:RMSECalTime*(24-6)], dtype=np.float32))**2)**0.5
-
-    RMSEList.append(RMSE)
+    if checkZero(testTarget) == False:
+        RMSE = []
+        for i in range(RMSECalTime):
+            if checkZero(testTarget[i*(24-6):(i+1)*(24-6)]) == False:
+                RMSE = RMSE + [e for e in (testPredict[i*(24-6):(i+1)*(24-6)] - np.array(testTarget[i*(24-6):(i+1)*(24-6)], dtype=np.float32))**2]
+        RMSE = np.mean(RMSE)**0.5
+        RMSEList.append(RMSE)
 
 print('Top 5', np.mean(RMSEList[:5]))
 print('Top 10', np.mean(RMSEList[:10]))
 print('Top 30', np.mean(RMSEList[:30]))
+
+
+
+
+
+
+
+
+
+

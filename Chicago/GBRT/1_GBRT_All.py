@@ -1,4 +1,4 @@
-from dataAPI.apis import *
+from dataAPI.utils import *
 import tensorflow as tf
 from scipy import stats
 import sys
@@ -85,14 +85,14 @@ predictResult = []
 counter = 0
 predictLength = 80
 for i in range(predictLength*24):
-    if i % 24 >= (24 - featureLength):
+    if i % 24 < featureLength:
         continue
     proportionList = []
     weightList = []
     dayIndexStart = len(dateStringList) - testDataLength + int(i / 24)
     hourIndexStart = i % 24
     for j in range(H):
-        if j % 24 >= (24 - featureLength):
+        if j % 24 < featureLength:
             continue
         dayIndex = len(dateStringList) - testDataLength + int(i/24) - int(j/24)
         hourIndex = j % 24
@@ -126,8 +126,21 @@ for stationID in centralStationIDList:
     stationIndex = allStationIDList.index(stationID)
     a = predictResult[0:dayLength*(24-6), stationIndex].reshape([-1,])
     b = GraphValueMatrix[-80: -80 + dayLength, :24 - featureLength, stationIndex].reshape([-1,])
-    c = a - b
-    RMSEList.append(np.mean((a-b)**2)**0.5)
+
+    if checkZero(b) == False:
+        a_nonZero = []
+        b_nonZero = []
+        for i in range(dayLength):
+            tmp_a = [e for e in a[i*(24-6): (i+1)*(24-6)]]
+            tmp_b = [e for e in b[i*(24-6): (i+1)*(24-6)]]
+            if checkZero(tmp_b) == False:
+                a_nonZero = a_nonZero + tmp_a
+                b_nonZero = b_nonZero + tmp_b
+
+        a_nonZero = np.array(a_nonZero, dtype=np.float32)
+        b_nonZero = np.array(b_nonZero, dtype=np.float32)
+
+        RMSEList.append(np.mean((a_nonZero - b_nonZero)**2)**0.5)
     counterForRMSED += 1
     if counterForRMSED == 30:
         break
@@ -135,3 +148,16 @@ print(RMSEList)
 print(np.mean(RMSEList[0:5]),
       np.mean(RMSEList[0:10]),
       np.mean(RMSEList[0:30]))
+
+
+
+
+
+
+
+
+
+
+
+
+
