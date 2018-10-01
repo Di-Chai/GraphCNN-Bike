@@ -1,58 +1,34 @@
-from localPath import rawBikeDataPath
+from localPath import *
 import os
-import csv
-import json
+from APIS.csv_api import loadCSVFileFromPath
+from DataAPI.utils import saveJsonData
 from dateutil.parser import parse
-from DataAPI.utils import saveJsonData, getJsonData
 
-csvFileNameList = [e for e in os.listdir(rawBikeDataPath) if e.endswith(".csv")]
+if __name__ == '__main__':
 
-def compareTime(startTime, oldTime):
-    new = parse(startTime)
-    old = parse(oldTime)
-    if new < old:
-        return True
-    else:
-        return False
+    # n_jobs = 8
+    #
+    # partitionFunc = lambda csvFileNameList, i, n_job: [csvFileNameList[e] for e in range(len(csvFileNameList)) if e % n_job == i]
+    #
+    # stationAppearTimeDict = multipleProcess(csvFileNameList, partitionFunc, task, n_jobs, reduceFunction, [])
+    #
+    # saveJsonData(stationAppearTimeDict, "stationAppearTime.json")
+    #
+    # # stationAppearTimeDict = getJsonData("stationAppearTime.json")
+    #
 
-def checkLatLng(lat, lng):
-    if lat == 0 or lng == 0 or lat > 45:
-        return False
-    else:
-        return True
+    header, file = loadCSVFileFromPath(os.path.join(rawBikeDataPath, 'Divvy_Stations_2017_Q3Q4.csv'), fileWithHeader=True)
 
-stationAppearTime = {}
-for csvFile in csvFileNameList:
-    with open(os.path.join(rawBikeDataPath, csvFile)) as f:
-        f_csv = csv.reader(f)
-        headers = next(f_csv)
-        print(csvFile)
-        for row in f_csv:
-            # get all the data
-            startTime = row[1]
-            stopTime = row[2]
-            startStationID = row[3]
-            endStationID = row[7]
+    stationAppearTimeDict = {}
 
-            startStationLat = float(row[5])
-            startStationLong = float(row[6])
-            
-            endStationLat = float(row[9])
-            endStationLong = float(row[10])
+    for row in file:
+        stationAppearTimeDict[row[0]] = [row[6], row[3], row[4], [row[1]]]
 
-            # get the appearTime
-            if checkLatLng(startStationLat, startStationLong):
-                if startStationID not in stationAppearTime:
-                    startStationName = row[4]
-                    stationAppearTime[startStationID] = [startTime, startStationLat, startStationLong, startStationName]
-                elif compareTime(startTime, stationAppearTime[startStationID][0]):
-                    stationAppearTime[startStationID] = [startTime, startStationLat, startStationLong, startStationName]
-            if checkLatLng(endStationLat, endStationLong):
-                if endStationID not in stationAppearTime:
-                    endStationName = row[8]
-                    stationAppearTime[endStationID] = [stopTime, endStationLat, endStationLong, endStationName]
-                elif compareTime(stopTime, stationAppearTime[endStationID][0]):
-                    stationAppearTime[endStationID] = [stopTime, endStationLat, endStationLong, endStationName]
+    saveJsonData(stationAppearTimeDict, "stationAppearTime.json")
 
-with open('stationAppearTime.json', 'w') as f:
-    json.dump(stationAppearTime, f)
+    stationInformation = {}
+    for stationID in stationAppearTimeDict.keys():
+        stationInformation[stationID] = parse(stationAppearTimeDict[stationID][0])
+    stationInformation = sorted(stationInformation.items(), key=lambda x:x[1], reverse=False)
+    saveJsonData({'stationID': [e[0] for e in stationInformation],
+                   'buildTime': [e[1].strftime('%Y-%m-%d %H:%M:%S') for e in stationInformation]}, 'stationIdOrderByBuildTime.json')

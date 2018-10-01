@@ -15,7 +15,7 @@ temperature = {}
 temperatureHour = {}
 wind = {}
 windHour = {}
-with open(os.path.join(csvDataPath, '1135040.csv'), 'r') as f:
+with open(os.path.join(csvDataPath, '1348559.csv'), 'r') as f:
     f_csv = csv.reader(f)
     headers = next(f_csv)
     counter = 0

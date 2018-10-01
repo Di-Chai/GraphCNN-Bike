@@ -1,11 +1,14 @@
 from multiprocessing import Pool
 import os
 
-# targetFolder = 'GraphFusionModel'
-# targetScript = 'GraphFusionModelV14'
+targetFolder = 'GraphFusionModel'
+targetScript = 'GraphFusionModelV14'
 
-targetFolder = 'ARIMA'
-targetScript = 'ARIMA-V1'
+# targetFolder = 'ARIMA'
+# targetScript = 'ARIMA-V1'
+
+# targetFolder = 'SingleGraph'
+# targetScript = 'SingleGraph-V1'
 
 def slaveThread(fileNameString, argv):
     os.system('python -m ' + fileNameString + ' ' + argv)
@@ -16,7 +19,7 @@ stationRangeList = [
 
 if __name__ == '__main__':
 
-    n_jobs = 10
+    n_jobs = 4
     stationRange = stationRangeList[0]
 
     k = stationRange[0]

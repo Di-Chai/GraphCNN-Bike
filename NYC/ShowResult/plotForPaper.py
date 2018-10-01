@@ -38,7 +38,7 @@ if __name__ == '__main__':
     # fusion graph
     result4 = np.loadtxt(os.path.join(txtPath, 'GraphSingleStationDemandPreV8_14.txt'), delimiter=' ')
 
-    resultFusion = np.loadtxt(os.path.join(txtPath, 'GraphFusionModelV99_14.txt'), delimiter=' ')
+    resultFusion = np.loadtxt(os.path.join(txtPath, 'GraphFusionModelV10_14.txt'), delimiter=' ')
 
     # figure 1
     # top = 30

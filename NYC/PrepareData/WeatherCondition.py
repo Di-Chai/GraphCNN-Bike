@@ -62,6 +62,6 @@ for key, value in wind.items():
 weatherDict = {'isBadDay': isBadDay, 'temperature': temperature, 'wind': wind, 'temHour': temperatureHour,
                'windHour': windHour}
 
-with open(os.path.join(jsonPath, 'weatherDictChicago.json'), 'w') as f:
+with open(os.path.join(jsonPath, 'weatherDict.json'), 'w') as f:
     json.dump(weatherDict, f)
 

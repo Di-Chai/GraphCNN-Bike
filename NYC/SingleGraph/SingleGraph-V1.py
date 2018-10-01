@@ -1,7 +1,7 @@
-from dataAPI.utils import *
+from DataAPI.utils import *
 import tensorflow as tf
 from scipy import stats
-from sharedParametersV2 import *
+from SharedParameters.SharedParameters import *
 import sys
 
 # currentFileName = __file__.split('/')[-1][:-3]
@@ -51,9 +51,6 @@ trainPreModel = True
 ######################################################################################################################
 # Prepare the training data and test data
 ######################################################################################################################
-if os.path.isfile(os.path.join(jsonPath, 'GraphPreData.json')) is False:
-    os.system('python getGraphPreDataMulThreads.py')
-
 GraphValueData = getJsonData('GraphValueMatrix.json')
 
 GraphValueMatrix = GraphValueData['GraphValueMatrix']

@@ -1,7 +1,7 @@
-from dataAPI.utils import *
+from DataAPI.utils import *
 import tensorflow as tf
 from scipy import stats
-from sharedParametersV2 import *
+from SharedParameters.SharedParameters import *
 import sys
 
 # currentFileName = __file__.split('/')[-1][:-3]

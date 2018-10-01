@@ -32,10 +32,10 @@ if __name__ == '__main__':
     # getClusterInAndOut with input stationIDGroup
     stationIdOrderByBuildTime = getJsonData('stationIdOrderByBuildTime.json')
     stationIdList = stationIdOrderByBuildTime['stationID']
-
+    
     n_jobs = 11
     timeRangeTransitionMatrix = ['2016-01-01', '2017-01-01']
-    timeRangeTransitionMatrix = trainDataTimeRange
+    # timeRangeTransitionMatrix = trainDataTimeRange
 
     p = Pool()
     for i in range(n_jobs):

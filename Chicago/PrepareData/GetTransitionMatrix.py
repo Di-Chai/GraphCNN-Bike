@@ -33,9 +33,9 @@ if __name__ == '__main__':
     stationIdOrderByBuildTime = getJsonData('stationIdOrderByBuildTime.json')
     stationIdList = stationIdOrderByBuildTime['stationID']
 
-    n_jobs = 11
+    n_jobs = 8
     timeRangeTransitionMatrix = ['2016-01-01', '2017-01-01']
-    timeRangeTransitionMatrix = trainDataTimeRange
+    # timeRangeTransitionMatrix = trainDataTimeRange
 
     p = Pool()
     for i in range(n_jobs):

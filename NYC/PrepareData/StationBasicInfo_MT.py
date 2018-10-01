@@ -76,7 +76,7 @@ def reduceFunction(a, b):
 
 if __name__ == '__main__':
 
-    n_jobs = 10
+    n_jobs = 11
 
     partitionFunc = lambda csvFileNameList, i, n_job: [csvFileNameList[e] for e in range(len(csvFileNameList)) if e % n_job == i]
 
@@ -91,4 +91,7 @@ if __name__ == '__main__':
         stationInformation[stationID] = parse(stationAppearTimeDict[stationID][0])
     stationInformation = sorted(stationInformation.items(), key=lambda x:x[1], reverse=False)
     saveJsonData({'stationID': [e[0] for e in stationInformation],
-                   'buildTime': [e[1].strftime('%Y-%m-%d %H:%M:%S') for e in stationInformation]}, 'stationIdOrderByBuildTime.json')
+                   'buildTime': [e[1].strftime('%Y-%m-%d %H:%M:%S') for e in stationInformation]},
+                 'stationIdOrderByBuildTime.json')
+
+    print(len(stationInformation))

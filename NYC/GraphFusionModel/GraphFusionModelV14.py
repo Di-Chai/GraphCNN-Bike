@@ -89,8 +89,6 @@ trainPreModel = False
 ######################################################################################################################
 # Prepare the training data and test data
 ######################################################################################################################
-if os.path.isfile(os.path.join(jsonPath, 'GraphPreData.json')) is False:
-    os.system('python getGraphPreDataMulThreads.py')
 
 GraphValueData = getJsonData('GraphValueMatrix.json')
 
