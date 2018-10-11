@@ -15,7 +15,7 @@ dockDataDict = safeLoad(getJsonData, 'dockDataDict.json')
 distanceMatrix = safeLoad(getJsonData, 'distanceMatrix.json')
 
 def getRawBikeDataFileList():
-    return sorted([e for e in os.listdir(rawBikeDataPath) if e.endswith('.csv')])
+    return sorted([e for e in os.listdir(rawBikeDataPath) if e.endswith('.csv') and 'Trips' in e])
 
 def getNearStationList(stationID, distanceNear, distanceFar):
     resultList = []

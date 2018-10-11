@@ -5,14 +5,14 @@ timeSlotV2 = 60
 # (0) feature and target length
 featureLength = 6
 targetLength = 1
-lossTestLength = 15
+lossTestLength = 30
 pValueConfidenceValue = 0.1
 ##############################################################
 # (1) LSTM AutoEncoder Parameters
 n_epoch = 5001
 batch_size = 128
 lr = 0.0001  # learning rate
-n_hidden_units = 32
+n_hidden_units = 64
 dropout_pro = 0.01
 n_inputs = 1
 n_steps_encoder = featureLength
@@ -33,7 +33,7 @@ demandType = demandTypeList[0]
 ##############################################################
 # (2) prediction network
 # with the first layer and the last layer
-n_epoch_pre = 5001
+n_epoch_pre = 6001
 addFeatureLength = 2 # additionalFeatureLengthDict[str(rank)]
 predictLength = targetLength
 n_units_pre = [n_hidden_units + addFeatureLength, n_hidden_units*2, n_hidden_units, n_hidden_units/2, predictLength]

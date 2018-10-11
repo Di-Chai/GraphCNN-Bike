@@ -15,6 +15,16 @@ from localPath import *
 
 dateTimeMode = '%Y-%m-%d'
 
+RMSE_OP = lambda x, y: np.sqrt(np.mean(np.square(np.array(x, dtype=np.float32) - np.array(y, dtype=np.float32))))
+
+def checkZero(valueList):
+    result = True
+    for e in valueList:
+        if e != 0:
+            result = False
+            break
+    return result
+
 def safeLoad(func, fileName):
     try:
         return func(fileName)
@@ -37,13 +47,6 @@ def saveJsonData(dataDict, fileName):
 def removeJsonData(fileName):
     os.remove(os.path.join(jsonPath, fileName))
 
-def checkZero(valueList):
-    result = True
-    for e in valueList:
-        if e != 0:
-            result = False
-            break
-    return result
 
 try:
     stationAppearTimeDict = getJsonData('stationAppearTime.json')

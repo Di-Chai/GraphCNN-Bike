@@ -51,8 +51,6 @@ trainPreModel = True
 ######################################################################################################################
 # Prepare the training data and test data
 ######################################################################################################################
-if os.path.isfile(os.path.join(jsonPath, 'GraphPreData.json')) is False:
-    os.system('python getGraphPreDataMulThreads.py')
 
 GraphValueData = getJsonData('GraphValueMatrix.json')
 
@@ -150,14 +148,9 @@ testOtherFeature = np.array(testOtherFeature, dtype=np.float32)
 stationNumber = autoEncoderFeature.shape[2]
 targetStationIndex = int((rank/3))
 demandMaskTensorFeed = np.array(demandMask[targetStationIndex]).reshape([stationNumber, 1])
-if rank % 3 == 0:
-    graphMatrixRawFeed = np.array(demandMask[targetStationIndex]).reshape([stationNumber, 1])
-elif rank % 3 == 1:
-    graphMatrixRawFeed = np.array(distanceGraphMatrix[allStationIDList.index(centralStationIDList[targetStationIndex])])\
-        .reshape([stationNumber, 1])
-elif rank % 3 == 2:
-    graphMatrixRawFeed = np.array(demandGraphMatrix[allStationIDList.index(centralStationIDList[targetStationIndex])]) \
-        .reshape([stationNumber, 1])
+
+graphMatrixRawFeed = np.array(distanceGraphMatrix[allStationIDList.index(centralStationIDList[targetStationIndex])]).\
+    reshape([stationNumber, 1])
 ###################################################################################################################
 # Build The NetWork
 #########################################################################

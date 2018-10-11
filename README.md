@@ -1,5 +1,8 @@
 # GraphCNN-Bike
 
-Currently sharing the network structure.
+Data can be found here:
 
-Later the data and api-document will be shared here.
+https://drive.google.com/file/d/1R2oHO5Dr7dMi7HUY0hpNJJju6Jt9JSVn/view?usp=sharing
+
+Extract the zip file and put the data directory into the project path.
+

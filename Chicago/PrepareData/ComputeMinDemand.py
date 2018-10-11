@@ -19,7 +19,7 @@ distributeList = stationIdList
 # 2 partition function
 partitionFunc = lambda dtList, i, n_job: [dtList[e] for e in range(len(dtList)) if e % n_job == i]
 # 3 n_jobs
-n_jobs = 8
+n_jobs = 12
 # 4 reduce function
 def reduceFunction(a, b):
     for key, value in b.items():
@@ -76,9 +76,9 @@ def task(ShareQueue, Locker, distributedList, parameterList):
                     finalResult[endStationID][stopTimeDateString]['in'][stopTimeMinute] += 1
                     finalResult[endStationID][stopTimeDateString]['inStation'][stopTimeMinute].append(startStationID)
     print('Process Finish')
-    # Locker.acquire()
+    Locker.acquire()
     ShareQueue.put(finalResult)
-    # Locker.release()
+    Locker.release()
 # 6 parameter list
 parameterList = []
 # 7 run !

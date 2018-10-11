@@ -7,15 +7,15 @@ from dateutil.parser import parse
 if __name__ == '__main__':
 
     # n_jobs = 8
-    #
+    
     # partitionFunc = lambda csvFileNameList, i, n_job: [csvFileNameList[e] for e in range(len(csvFileNameList)) if e % n_job == i]
-    #
+    
     # stationAppearTimeDict = multipleProcess(csvFileNameList, partitionFunc, task, n_jobs, reduceFunction, [])
-    #
+    
     # saveJsonData(stationAppearTimeDict, "stationAppearTime.json")
-    #
+    
     # # stationAppearTimeDict = getJsonData("stationAppearTime.json")
-    #
+    
 
     header, file = loadCSVFileFromPath(os.path.join(rawBikeDataPath, 'Divvy_Stations_2017_Q3Q4.csv'), fileWithHeader=True)
 

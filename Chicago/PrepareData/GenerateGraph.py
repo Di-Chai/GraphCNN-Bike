@@ -16,6 +16,7 @@ if __name__ == '__main__':
 
     # distance graph
     # distanceThreshold = 500
+    # 排序：新建时间
     graphMatrix = [[0 for _ in range(len(allStationIDList))] for _ in range(len(allStationIDList))]
     for i in range(len(allStationIDList)):
         for j in range(len(allStationIDList)):
@@ -33,6 +34,7 @@ if __name__ == '__main__':
     np.savetxt(os.path.join(txtPath, 'distanceGraphMatrix.txt'), graphMatrix, newline='\n', delimiter=' ')
 
     # demand graph
+    # 排序：新建时间
     transitionMatrix = np.loadtxt(os.path.join(txtPath, 'transitionMatrix.txt'), delimiter=' ')
     demandGraphMatrix = np.array(transitionMatrix, dtype=np.float32).transpose()
     for i in range(len(allStationIDList)):
@@ -46,6 +48,7 @@ if __name__ == '__main__':
     np.savetxt(os.path.join(txtPath, 'demandGraphMatrix.txt'), demandGraphMatrix, newline='\n', delimiter=' ')
 
     # demand mask
+    # 排序：centrality
     demandMask = np.array([[0 for _ in range(len(allStationIDList))] for _ in range(len(centralStationIDList))])
     for i in range(len(centralStationIDList)):
         for j in range(len(allStationIDList)):
@@ -78,7 +81,7 @@ if __name__ == '__main__':
     # fusion graph
     fusionGraphMatrix2 = 0.5 * graphMatrix + 0.5 * demandGraphMatrix
     np.savetxt(os.path.join(txtPath, 'fusionGraphMatrix2.txt'), fusionGraphMatrix2, newline='\n', delimiter=' ')
-
+    
     # demand correlation graph
     # (1) get the demand list of stations
     if os.path.isfile(os.path.join(txtPath, 'demandListForGraph.txt')) is False:

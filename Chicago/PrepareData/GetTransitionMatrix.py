@@ -6,7 +6,7 @@ def getTransitionMatrixSlave(timeStringRange, stationIDList, p, myRank):
     start = parse(timeStringRange[0])
     end = parse(timeStringRange[1])
     inTimeRange = lambda x: True if x > start and x < end else False
-    csvFileNameList = [e for e in os.listdir(rawBikeDataPath) if e.endswith(".csv")]
+    csvFileNameList = sorted([e for e in os.listdir(rawBikeDataPath) if e.endswith(".csv") and 'Trips' in e])
     transitionMatrix = [[0 for _ in range(stationIDList.__len__())] for _ in range(stationIDList.__len__())]
     for csvFile in csvFileNameList:
         with open(os.path.join(rawBikeDataPath, csvFile)) as f:
@@ -32,8 +32,8 @@ if __name__ == '__main__':
     # getClusterInAndOut with input stationIDGroup
     stationIdOrderByBuildTime = getJsonData('stationIdOrderByBuildTime.json')
     stationIdList = stationIdOrderByBuildTime['stationID']
-
-    n_jobs = 8
+    
+    n_jobs = 10
     timeRangeTransitionMatrix = ['2016-01-01', '2017-01-01']
     # timeRangeTransitionMatrix = trainDataTimeRange
 

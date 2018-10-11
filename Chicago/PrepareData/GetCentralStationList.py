@@ -1,6 +1,5 @@
 from DataAPI.utils import *
 
-
 # load the station id
 stationIdOrderByBuildTime = getJsonData('stationIdOrderByBuildTime.json')
 stationIdList = stationIdOrderByBuildTime['stationID']
