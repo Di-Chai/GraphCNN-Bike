@@ -1,25 +1,46 @@
-# 代码执行顺序
+# Code excute order
 
-处理天气数据
-1 python -m PrepareData.WeatherCondition
+#### The Code should be excuted in the following order : 
 
-获取站点新建时间、经纬度信息
-2 python -m PrepareData.StationBasicInfo
+(1) Process weather data
 
-获取transition矩阵，用于构建Graph
-站点按构建时间排序
-3 python -m PrepareData.GetTransitionMatrix
+```
+python -m PrepareData.WeatherCondition
+```
 
-按照Degree排序，得到central station list
-4 python -m PrepareData.GetCentralStationList
+(2) Access basic information like build-time, location and so on
 
-计算每分钟的demand数据
-和站点的排序无关
-5 python -m PrepareData.ComputeMinDemand
+```
+python -m PrepareData.StationBasicInfo
+```
 
-生成所有的graph
-和站点的排序有关，需要注意！！
-6 python -m PrepareData.GenerateGraph
+(3) Get the transition matrix, which will be used for calculating central stations and building interation graph
 
-生成 graph cnn 所需的图
-7 python -m PrepareData.GetGraphPreDataMulThreads
+```
+python -m PrepareData.GetTransitionMatrix
+```
+
+(4) Order the stations based on degree (use transition matrix)
+
+```
+python -m PrepareData.GetCentralStationList
+```
+
+(5) Data preprocessing, get demand data (This step need a large RAM, as least 32 GB)
+
+```
+python -m PrepareData.ComputeMinDemand
+```
+
+(6) Generate all the Graphs
+
+```
+python -m PrepareData.GenerateGraph
+```
+
+(7) Prepare the graph-structure data, which will be used in the GCN part.
+
+```
+python -m PrepareData.GetGraphPreDataMulThreads
+```
+
